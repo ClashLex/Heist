@@ -1,8 +1,11 @@
 {
   "name": "onam-heist",
+  "description": "An interactive mystery game set in a Kerala home during Thiruvonam — made for the Friends of Figma Kochi Make-a-thon, Onam Edition at TinkerSpace Kochi.",
+  "author": "Friends of Figma Kochi",
+  "license": "MIT",
+  "keywords": ["fof-kochi", "figma-make", "onam-makeathon", "tinkerspace", "onam", "mystery", "kerala"],
   "private": true,
   "version": "1.0.0",
-  "description": "An interactive Onam detective mystery game set in a Kerala home. Built using Figma Make for the Friends of Figma (FoF) Kochi Make-a-thon (Onam Edition) held on August 16 at TinkerSpace Kochi.",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -10,34 +13,18 @@
     "preview": "vite preview",
     "format": "oxfmt"
   },
-  "keywords": [
-    "onam",
-    "onam-heist",
-    "fof-kochi",
-    "friends-of-figma",
-    "figma-make",
-    "makeathon",
-    "tinkerspace",
-    "mystery-game",
-    "interactive-fiction",
-    "react19",
-    "tailwind-v4",
-    "vite"
-  ],
-  "author": "ClashLex & Team",
-  "license": "MIT",
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^6.0.0",
-    "oxfmt": "^0.2.0",
     "tailwindcss": "^4.0.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "oxfmt": "^0.2.0",
     "typescript": "^5.7.0",
     "vite": "^8.0.0"
   }

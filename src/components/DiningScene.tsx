@@ -121,12 +121,6 @@ export default function DiningScene({
               <stop offset="66%"  stopColor="#FF8E22" stopOpacity="0.06" />
               <stop offset="100%" stopColor="#FF6010" stopOpacity="0" />
             </radialGradient>
-            <linearGradient id="gardenSky" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%"   stopColor="#FFF4D0" />
-              <stop offset="45%"  stopColor="#FFE08A" />
-              <stop offset="85%"  stopColor="#8FC280" />
-              <stop offset="100%" stopColor="#4A8540" />
-            </linearGradient>
             <linearGradient id="lightShaft" x1="0%" y1="0%" x2="80%" y2="100%">
               <stop offset="0%"   stopColor="#FFE080" stopOpacity="0.06" />
               <stop offset="100%" stopColor="#FFE080" stopOpacity="0" />
@@ -259,60 +253,83 @@ export default function DiningScene({
           <rect x="1232" y="72" width="98" height="6" fill="#080400" opacity="0.5" />
           <rect x="1324" y="72" width="76" height="828" fill="#211208" opacity="0.5" />
           <rect x="1318" y="72" width="8" height="828" fill="#080400" opacity="0.42" />
-          {/* ═══ LEFT WALL & TRADITIONAL KERALA WOODEN WINDOW / VERANDA THRESHOLD ═══ */}
-          {/* Left wall dark teak panelling */}
-          <rect x="0" y="72" width="200" height="828" fill="#1C0E05" opacity="0.6" />
-          <rect x="0" y="72" width="14" height="828" fill="#0A0400" opacity="0.75" />
+          {/* narrow left wall strips beside window */}
+          <rect x="0"   y="72" width="16"  height="828" fill="#140800" opacity="0.5" />
+          <rect x="202" y="274" width="14" height="626" fill="#140800" opacity="0.35" />
 
-          {/* Window opening looking out to sunny courtyard */}
-          <g id="keralaWindow">
-            {/* Outdoor sunny garden backdrop through the window */}
-            <rect x="22" y="76" width="176" height="186" rx="4" fill="url(#gardenSky)" />
-            <rect x="22" y="76" width="176" height="186" rx="4" fill="url(#windowLight)" opacity="0.7" />
+          {/* ═══ KERALA WOODEN WINDOW — left wall ═══ */}
+          {/* Courtyard sky & garden backdrop through the opening */}
+          <defs>
+            <linearGradient id="gardenSky" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stopColor="#7BBDE0" />
+              <stop offset="55%"  stopColor="#A8D090" />
+              <stop offset="100%" stopColor="#6AAA58" />
+            </linearGradient>
+          </defs>
+          {/* sky + ground through window opening */}
+          <rect x="28" y="74" width="162" height="188" fill="url(#gardenSky)" />
+          {/* bright outdoor wash */}
+          <rect x="28" y="74" width="162" height="188" fill="#FFE488" opacity="0.18" />
+          {/* banana palm foliage */}
+          <ellipse cx="60"  cy="130" rx="36" ry="16" fill="#4A8C30" opacity="0.82" transform="rotate(-28 60 130)" />
+          <ellipse cx="82"  cy="118" rx="30" ry="13" fill="#5CAA3A" opacity="0.78" transform="rotate(-10 82 118)" />
+          <ellipse cx="148" cy="124" rx="32" ry="14" fill="#4A8C30" opacity="0.8"  transform="rotate(22 148 124)" />
+          <ellipse cx="130" cy="112" rx="26" ry="11" fill="#5CAA3A" opacity="0.72" transform="rotate(8 130 112)" />
+          {/* palm trunk hints */}
+          <rect x="56"  y="148" width="6" height="114" rx="3" fill="#3A6020" opacity="0.55" />
+          <rect x="148" y="144" width="5" height="118" rx="3" fill="#3A6020" opacity="0.48" />
+          {/* veranda ground strip */}
+          <rect x="28" y="228" width="162" height="34" fill="#D4A870" opacity="0.7" />
 
-            {/* Lush courtyard banana & palm leaves outside */}
-            <ellipse cx="50" cy="240" rx="36" ry="28" fill="#245A36" opacity="0.95" />
-            <ellipse cx="160" cy="242" rx="42" ry="28" fill="#1B4328" opacity="0.95" />
-            <ellipse cx="106" cy="254" rx="55" ry="22" fill="#3D7D4D" opacity="0.85" />
-            <path d="M 28,185 Q 58,165 88,188" stroke="#52B788" strokeWidth="2.5" fill="none" opacity="0.8" />
-            <path d="M 124,175 Q 154,160 184,182" stroke="#74C69D" strokeWidth="2.5" fill="none" opacity="0.8" />
+          {/* teak outer frame — top lintel */}
+          <rect x="16" y="66" width="184" height="14" rx="3" fill="#3D2817" />
+          <rect x="16" y="66" width="184" height="4" rx="2" fill="#5A3C22" opacity="0.7" />
+          {/* gold lintel trim */}
+          <path d="M 18,72 L 198,72" stroke="#B8860B" strokeWidth="2" opacity="0.75" />
+          {/* left jamb */}
+          <rect x="16" y="66" width="14" height="202" rx="2" fill="#3D2817" />
+          <rect x="16" y="68" width="5"  height="198" fill="#5A3C22" opacity="0.5" />
+          {/* right jamb */}
+          <rect x="188" y="66" width="14" height="202" rx="2" fill="#3D2817" />
+          <rect x="197" y="68" width="5"  height="198" fill="#2C1C0A" opacity="0.5" />
+          {/* window sill */}
+          <rect x="14" y="262" width="190" height="12" rx="3" fill="#3D2817" />
+          <rect x="14" y="268" width="190" height="4"  rx="2" fill="#5A3C22" opacity="0.55" />
 
-            {/* Veranda wooden balustrade / lower railing */}
-            <rect x="22" y="222" width="176" height="40" fill="#2E1808" opacity="0.95" />
-            <line x1="22" y1="228" x2="198" y2="228" stroke="#3D220C" strokeWidth="2" />
-            <line x1="22" y1="242" x2="198" y2="242" stroke="#1A0A02" strokeWidth="1.5" />
-            {[42, 66, 90, 114, 138, 162, 184].map((bx, bi) => (
-              <rect key={bi} x={bx} y={228} width="5" height="34" rx="1.2" fill="#3E200A" stroke="#1A0A02" strokeWidth="0.8" />
-            ))}
+          {/* left open shutter */}
+          <rect x="30" y="74" width="72" height="186" rx="2" fill="#4A3018" opacity="0.9" />
+          <line x1="30" y1="74" x2="30" y2="260" stroke="#2C1C0A" strokeWidth="2" />
+          <line x1="102" y1="74" x2="102" y2="260" stroke="#2C1C0A" strokeWidth="1.5" />
+          {/* shutter horizontal rails */}
+          <line x1="30" y1="130" x2="102" y2="130" stroke="#2C1C0A" strokeWidth="1.4" opacity="0.6" />
+          <line x1="30" y1="200" x2="102" y2="200" stroke="#2C1C0A" strokeWidth="1.2" opacity="0.5" />
+          {/* brass latch left */}
+          <rect x="96" y="158" width="8" height="5" rx="2" fill="#B8860B" />
+          <circle cx="100" cy="160.5" r="1.8" fill="#E6C258" />
 
-            {/* Heavy Carved Teak Wooden Window Frame */}
-            <rect x="18" y="72" width="184" height="194" rx="4" fill="none" stroke="#2B1406" strokeWidth="10" />
-            <rect x="18" y="72" width="184" height="194" rx="4" fill="none" stroke="#3F200A" strokeWidth="4" />
+          {/* right open shutter */}
+          <rect x="114" y="74" width="72" height="186" rx="2" fill="#3D2817" opacity="0.85" />
+          <line x1="114" y1="74" x2="114" y2="260" stroke="#2C1C0A" strokeWidth="1.5" />
+          <line x1="186" y1="74" x2="186" y2="260" stroke="#2C1C0A" strokeWidth="2" />
+          <line x1="114" y1="130" x2="186" y2="130" stroke="#2C1C0A" strokeWidth="1.4" opacity="0.6" />
+          <line x1="114" y1="200" x2="186" y2="200" stroke="#2C1C0A" strokeWidth="1.2" opacity="0.5" />
+          {/* brass latch right */}
+          <rect x="112" y="158" width="8" height="5" rx="2" fill="#B8860B" />
+          <circle cx="116" cy="160.5" r="1.8" fill="#E6C258" />
 
-            {/* Carved top lintel */}
-            <rect x="12" y="68" width="196" height="12" rx="2" fill="#3D1E08" stroke="#1A0A02" strokeWidth="1.2" />
-            <rect x="16" y="70" width="188" height="2.5" fill="#D4AF37" opacity="0.45" />
+          {/* veranda balustrade rails at bottom of window */}
+          <rect x="28" y="232" width="162" height="4" rx="2" fill="#4A3018" opacity="0.8" />
+          <rect x="28" y="246" width="162" height="4" rx="2" fill="#3D2817" opacity="0.7" />
+          {([48, 68, 88, 108, 128, 148, 168] as number[]).map((x, i) => (
+            <rect key={i} x={x} y={232} width="5" height="18" rx="2" fill="#3D2817" opacity="0.7" />
+          ))}
 
-            {/* Open wooden shutters on left and right */}
-            {/* Left shutter folded open */}
-            <polygon points="4,74 20,80 20,260 4,254" fill="#2B1506" stroke="#150802" strokeWidth="1.2" />
-            <polygon points="7,82 17,86 17,248 7,244" fill="#3D200A" />
-            <ellipse cx="18" cy="170" rx="2" ry="3" fill="#D4AF37" />
-
-            {/* Right shutter folded open */}
-            <polygon points="200,80 216,74 216,254 200,260" fill="#2B1506" stroke="#150802" strokeWidth="1.2" />
-            <polygon points="203,86 213,82 213,244 203,248" fill="#3D200A" />
-            <ellipse cx="202" cy="170" rx="2" ry="3" fill="#D4AF37" />
-
-            {/* Window Sill at base */}
-            <rect x="12" y="260" width="196" height="10" rx="2" fill="#381B08" stroke="#160802" strokeWidth="1" />
-            <rect x="16" y="261" width="188" height="2" fill="rgba(255,230,160,0.35)" />
-          </g>
-
-          {/* ═══ WINDOW LIGHT SHAFTS ACROSS ROOM ═══ */}
+          {/* ═══ WINDOW LIGHT ═══ */}
           <rect x="0" y="0" width="1400" height="900" fill="url(#windowLight)" />
-          <polygon points="22,76 198,76 480,900 0,900" fill="url(#lightShaft)" />
-          <ellipse cx="260" cy="480" rx="280" ry="250" fill="#FFD860" opacity="0.035" />
+          {/* enhanced sunlight shafts from the window */}
+          <polygon points="16,74 210,74 380,900 0,900" fill="url(#lightShaft)" />
+          <polygon points="60,74 160,74 300,900 80,900" fill="url(#lightShaft)" opacity="0.5" />
+          <ellipse cx="260" cy="500" rx="300" ry="260" fill="#FFD860" opacity="0.025" />
 
           {/* ═══ MAT ═══ */}
           <rect x="196" y="222" width="1012" height="472" rx="8"
@@ -551,23 +568,27 @@ export default function DiningScene({
           <path d="M 220,568 C 244,562 296,562 324,572" stroke="rgba(185,162,96,0.34)" strokeWidth="1" fill="none" />
           <path d="M 214,580 C 242,574 300,574 330,584" stroke="rgba(185,162,96,0.24)" strokeWidth="0.8" fill="none" />
 
-          {/* ═══ PHONE — resting on the mat, clear lock screen ═══ */}
+          {/* ═══ PHONE — resting on the mat, faint lock screen ═══ */}
           <g transform="rotate(-9 430 652)">
             <ellipse cx="432" cy="704" rx="30" ry="9" fill="#100500" opacity="0.34" filter="url(#blurDrop)" />
-            <rect x="404" y="604" width="52" height="96" rx="10" fill="#0B0B10" filter="url(#faintShadow)" />
-            <rect x="408" y="608" width="44" height="88" rx="7" fill="#0F172A" />
+            <rect x="406" y="606" width="48" height="94" rx="10" fill="#0B0B10" filter="url(#faintShadow)" />
+            <rect x="410" y="610" width="40" height="86" rx="7" fill="#12141C" />
             {/* screen glow */}
-            <rect x="408" y="608" width="44" height="88" rx="7" fill="#1E293B" opacity="0.7" filter="url(#phoneGlow)" />
-            <rect x="409" y="609" width="42" height="86" rx="6" fill="#0B0F19" />
+            <rect x="410" y="610" width="40" height="86" rx="7" fill="#2A3A5A" opacity="0.5" filter="url(#phoneGlow)" />
+            <rect x="411" y="611" width="38" height="84" rx="6" fill="#0E1420" />
             {/* time + date */}
-            <text x="430" y="630" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="13" fontWeight="700" fill="#F8FAFC">12:39</text>
-            <text x="430" y="639" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="5" letterSpacing="0.8" fontWeight="600" fill="#94A3B8">12:39 PM</text>
-            <text x="430" y="647" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="4.2" letterSpacing="0.6" fill="#64748B">THIRUVONAM</text>
-            {/* notification card from Amma */}
-            <rect x="413" y="654" width="34" height="24" rx="3.5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
-            <circle cx="419" cy="662" r="3" fill="#DC2626" />
-            <text x="424" y="663.5" fontFamily="Outfit, sans-serif" fontSize="4.4" fontWeight="600" fill="#FFFFFF">Amma</text>
-            <text x="416" y="672" fontFamily="Outfit, sans-serif" fontSize="3.8" fontWeight="500" fill="#E2E8F0">&ldquo;Did you bring it?&rdquo;</text>
+            <text x="430" y="636" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="13" fontWeight="600" fill="#DCE4F0">12:39<tspan fontSize="4.6" fontWeight="500" dx="0.8" dy="-4" fill="rgba(220,228,240,0.75)">PM</tspan></text>
+            <text x="430" y="646" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="4.4" letterSpacing="0.6" fill="rgba(220,228,240,0.6)">THIRUVONAM</text>
+            {/* notifications */}
+            <rect x="415" y="656" width="30" height="11" rx="2.5" fill="rgba(255,255,255,0.09)" />
+            <circle cx="420" cy="661.5" r="2.4" fill="#5A8A6A" />
+            <rect x="425" y="659" width="17" height="2" rx="1" fill="rgba(255,255,255,0.3)" />
+            <rect x="425" y="663" width="12" height="1.6" rx="0.8" fill="rgba(255,255,255,0.18)" />
+            <rect x="415" y="670" width="30" height="13" rx="2.5" fill="rgba(255,255,255,0.11)" />
+            <circle cx="420" cy="676.5" r="2.4" fill="#8B6A9A" />
+            <text x="425" y="675" fontFamily="Outfit, sans-serif" fontSize="3.6" fill="rgba(255,255,255,0.72)">Amma</text>
+            <text x="425" y="680.5" fontFamily="Outfit, sans-serif" fontSize="4.2" fontWeight="500" fill="rgba(255,255,255,0.9)">Did you bring it?</text>
+            <rect x="415" y="686" width="30" height="6" rx="2" fill="rgba(255,255,255,0.06)" />
           </g>
 
           {/* marigold + jasmine petals */}

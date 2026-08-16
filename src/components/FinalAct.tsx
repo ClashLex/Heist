@@ -420,6 +420,7 @@ export default function FinalAct(props: FinalActProps) {
           >
             {SUSPECTS.map((s) => {
               const on = accusedSuspectId === s.id
+              const pal = CHARACTER_PALETTES[s.id]
               return (
                 <button
                   key={s.id}
@@ -432,8 +433,9 @@ export default function FinalAct(props: FinalActProps) {
                     padding: '16px 8px',
                     background: on ? 'rgba(232,216,144,0.14)' : 'rgba(247,240,220,0.05)',
                     border: on
-                      ? '1px solid rgba(232,216,144,0.7)'
+                      ? `2px solid ${pal?.accent ?? 'rgba(232,216,144,0.7)'}`
                       : '1px solid rgba(232,216,144,0.16)',
+                    borderTop: pal ? `3px solid ${pal.primary}` : undefined,
                     cursor: 'pointer',
                     transition: 'all 0.16s ease',
                   }}
@@ -450,6 +452,19 @@ export default function FinalAct(props: FinalActProps) {
                   >
                     {s.name}
                   </span>
+                  {pal && (
+                    <span
+                      style={{
+                        fontFamily: 'Outfit, sans-serif',
+                        fontSize: 8,
+                        letterSpacing: '0.04em',
+                        color: 'rgba(240,228,180,0.55)',
+                        textTransform: 'none',
+                      }}
+                    >
+                      {pal.attire}
+                    </span>
+                  )}
                 </button>
               )
             })}
@@ -853,22 +868,24 @@ function SuspectFileCard({
 }) {
   const suspect = SUSPECTS.find((s) => s.id === id)
   const file = SUSPECT_FILE[id]
-  const palette = CHARACTER_PALETTES[id]
   if (!suspect || !file) return null
   const showContra = file.contraId ? discoveredContradictions.has(file.contraId) : false
+
+  const pal = CHARACTER_PALETTES[id]
+  const borderColor = pal ? pal.primary : 'rgba(181,146,58,0.6)'
 
   return (
     <div
       style={{
         marginTop: 14,
         background: 'rgba(247,240,220,0.96)',
-        borderLeft: `4px solid ${palette?.primary ?? 'rgba(181,146,58,0.6)'}`,
+        borderLeft: `4px solid ${borderColor}`,
         padding: '18px 22px',
         maxWidth: 460,
         animation: 'fadeIn 0.35s ease both',
       }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
         <div
           style={{
             fontFamily: 'Outfit, sans-serif',
@@ -876,26 +893,26 @@ function SuspectFileCard({
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
             color: '#1E0E04',
-            fontWeight: 600,
+            flex: 1,
           }}
         >
           {suspect.name}
         </div>
-        {palette && (
-          <span
+        {pal && (
+          <div
             style={{
-              fontFamily: 'Outfit, sans-serif',
-              fontSize: 9.5,
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              color: '#4A3018',
-              background: 'rgba(0,0,0,0.06)',
               padding: '3px 8px',
-              borderRadius: 3,
+              background: pal.primary,
+              border: `1px solid ${pal.accent}`,
+              fontFamily: 'Outfit, sans-serif',
+              fontSize: 8,
+              letterSpacing: '0.06em',
+              color: '#1E0E04',
+              whiteSpace: 'nowrap',
             }}
           >
-            {palette.label}
-          </span>
+            {pal.attire}
+          </div>
         )}
       </div>
       {!questioned ? (

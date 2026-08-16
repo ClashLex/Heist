@@ -1,37 +1,24 @@
-# Dependencies
 node_modules/
 .pnpm-store/
-
-# Production builds
 dist/
 build/
 .cache/
-
-# Environment and local configs
-.env
-.env.local
-.env.*.local
 .env*
-
-# Vite and tooling caches
 .vite/
+# OS files
+.DS_Store
+Thumbs.db
 vite.config.*.timestamp-*
 *.tsbuildinfo
+*-debug.log*
 logs/
 *.log
-*-debug.log*
 .claude-replay.*
 .tmp-*
 
-# OS and Editor files
-.DS_Store
-Thumbs.db
-*.swp
-*.swo
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
-
-# Platform-managed agentplat state
+# Platform-managed agentplat state, not project source. In the
+# client-initiated single-repo workspace layout (make's `Path: "."` spec) the
+# repo root IS the workspace root, so these land inside this repo rather than
+# beside it.
 /.plugins/
 /.opencode-skills/

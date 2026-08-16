@@ -11,7 +11,6 @@ interface Props {
 
 export default function Interrogation({ suspect, transcript, available, onAsk, onBack }: Props) {
   const palette = CHARACTER_PALETTES[suspect.id]
-
   return (
     <div
       style={{
@@ -39,8 +38,8 @@ export default function Interrogation({ suspect, transcript, available, onAsk, o
         {/* Portrait column */}
         <div
           style={{
-            flex: '0 0 134px',
-            padding: '22px 14px',
+            flex: '0 0 128px',
+            padding: '22px 18px',
             borderRight: '1px solid rgba(181,146,58,0.22)',
             display: 'flex',
             flexDirection: 'column',
@@ -59,25 +58,6 @@ export default function Interrogation({ suspect, transcript, available, onAsk, o
           >
             {suspect.name}
           </div>
-          {palette && (
-            <div
-              style={{
-                fontFamily: 'Outfit, sans-serif',
-                fontSize: 8.5,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                color: '#6E4218',
-                background: 'rgba(181,146,58,0.14)',
-                border: '1px solid rgba(181,146,58,0.25)',
-                padding: '2px 6px',
-                borderRadius: 3,
-                marginTop: 6,
-                lineHeight: 1.3,
-              }}
-            >
-              {palette.label}
-            </div>
-          )}
           <div
             style={{
               fontFamily: 'Outfit, sans-serif',
@@ -92,6 +72,24 @@ export default function Interrogation({ suspect, transcript, available, onAsk, o
           >
             {suspect.location}
           </div>
+          {palette && (
+            <div
+              style={{
+                marginTop: 10,
+                padding: '4px 8px',
+                background: palette.primary,
+                border: `1px solid ${palette.accent}`,
+                fontFamily: 'Outfit, sans-serif',
+                fontSize: 8,
+                letterSpacing: '0.06em',
+                color: '#1E0E04',
+                textAlign: 'center',
+                lineHeight: 1.5,
+              }}
+            >
+              {palette.attire}
+            </div>
+          )}
         </div>
 
         {/* Conversation column */}
