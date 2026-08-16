@@ -1,8 +1,7 @@
 // ─────────────────────────────────────────────────────────────
 // Onam Heist — the six people present during the incident.
-// Each carries one true detail, one misleading detail, and one
-// inconsistency — but not all of them point at the payasam.
-// Nothing here names the culprit.
+// Each character carries signature attire colors, one true detail,
+// one misleading detail, and one inconsistency.
 // ─────────────────────────────────────────────────────────────
 
 import type { HitArea } from './gameData'
@@ -26,7 +25,7 @@ export interface Suspect {
   location: string
   /** Opening line, shown before any question. */
   claim: string
-  /** A quiet, observable tell — atmosphere, not proof. */
+  /** A quiet, observable tell including their distinct attire. */
   observableDetail: string
   questions: SuspectQuestion[]
   hit: HitArea
@@ -54,7 +53,7 @@ export const SUSPECTS: Suspect[] = [
     relationship: 'Grandmother · organised the Sadya',
     location: 'By the dining area',
     claim: "I was serving everyone. It's my Sadya — I know where every dish belongs.",
-    observableDetail: 'Her eyes keep drifting toward the kitchen doorway.',
+    observableDetail: 'Dressed in an elegant Ivory & Gold Kasavu Saree with a silver hair bun; her eyes keep drifting toward the kitchen.',
     questions: [
       {
         id: 'am-where',
@@ -69,7 +68,7 @@ export const SUSPECTS: Suspect[] = [
       {
         id: 'am-who',
         q: 'Who was in the dining room?',
-        a: 'Everyone drifts through. Anu with her photos. My brother — late, as always.',
+        a: 'Everyone drifts through. Anu in her yellow kurti. My brother in his green kurta — late, as always.',
       },
       {
         id: 'am-brother',
@@ -87,7 +86,7 @@ export const SUSPECTS: Suspect[] = [
     relationship: 'Father',
     location: 'Out on the veranda',
     claim: 'I stepped out to the veranda for a phone call.',
-    observableDetail: 'He keeps a thumb on his phone, screen down.',
+    observableDetail: 'Wearing a Royal Navy Blue Silk Kurta; he keeps a thumb on his smartphone, screen down.',
     questions: [
       {
         id: 'ap-where',
@@ -102,7 +101,7 @@ export const SUSPECTS: Suspect[] = [
       {
         id: 'ap-see',
         q: 'Did you see anyone near the dining area?',
-        a: 'From the veranda? No. Though Kunjumol was in and out of the kitchen.',
+        a: 'From the veranda? No. Though Kunjumol in her red saree was in and out of the kitchen.',
       },
       {
         id: 'ap-photo',
@@ -120,7 +119,7 @@ export const SUSPECTS: Suspect[] = [
     relationship: 'Niece · took photos all morning',
     location: 'By the window',
     claim: 'I was taking photos all morning. Onam only comes once a year.',
-    observableDetail: 'Her phone is warm and nearly out of storage.',
+    observableDetail: 'In a bright Marigold Yellow Kurti; her phone is warm and nearly out of storage.',
     questions: [
       {
         id: 'an-where',
@@ -141,7 +140,7 @@ export const SUSPECTS: Suspect[] = [
       {
         id: 'an-kunjumol',
         q: 'In one photo, Kunjumol carries a vessel from the kitchen.',
-        a: "Does she? I just point and click. I don't always see what I catch.",
+        a: "Does she? In that red saree? I just point and click. I don't always notice what I catch.",
         photoReq: 'photo-02',
       },
     ],
@@ -154,7 +153,7 @@ export const SUSPECTS: Suspect[] = [
     relationship: 'Helping in the kitchen',
     location: 'In the kitchen doorway',
     claim: 'I was in the kitchen the whole time.',
-    observableDetail: 'Her sleeves are rolled; her hands are still wet.',
+    observableDetail: 'Wearing a Crimson Red Cotton Saree with rolled sleeves; her hands are still wet.',
     questions: [
       {
         id: 'ku-where',
@@ -179,7 +178,7 @@ export const SUSPECTS: Suspect[] = [
       },
       {
         id: 'ku-phone',
-        q: "Your phone shows a message — “Did you bring it?”",
+        q: "Your phone shows a message at 12:39 — “Did you bring it?”",
         a: 'My mother. She asks after everything — the sambar, the payasam, all of it.',
         evidenceReq: 'phone',
       },
@@ -193,7 +192,7 @@ export const SUSPECTS: Suspect[] = [
     relationship: "Ammachi's brother",
     location: 'Near the entrance',
     claim: 'I arrived just after everything was served. Traffic.',
-    observableDetail: 'There is fresh road dust on his shoes.',
+    observableDetail: 'Wearing an Emerald Green Kurta with a cream & gold shawl; there is fresh road dust on his shoes.',
     questions: [
       {
         id: 'un-when',
@@ -226,7 +225,7 @@ export const SUSPECTS: Suspect[] = [
     relationship: 'Stopped by during preparations',
     location: 'At the threshold, outside',
     claim: 'I only came to return the vessel.',
-    observableDetail: 'A folded cloth over one arm — whatever it wrapped is gone.',
+    observableDetail: 'Wearing a Terracotta Orange Shirt; a folded Kasavu cloth rests over one arm.',
     questions: [
       {
         id: 'ne-vessel',
