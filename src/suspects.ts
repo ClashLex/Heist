@@ -144,7 +144,7 @@ export const SUSPECTS: Suspect[] = [
         photoReq: 'photo-02',
       },
     ],
-    hit: { cx: 112, cy: 300, rx: 34, ry: 60 },
+    hit: { cx: 116, cy: 316, rx: 32, ry: 56 },
     zoom: 2.0,
   },
   {
@@ -223,7 +223,7 @@ export const SUSPECTS: Suspect[] = [
     id: 'neighbour',
     name: 'Neighbour',
     relationship: 'Stopped by during preparations',
-    location: 'At the threshold, outside',
+    location: 'At the window threshold, outside',
     claim: 'I only came to return the vessel.',
     observableDetail: 'Wearing a Terracotta Orange Shirt; a folded Kasavu cloth rests over one arm.',
     questions: [
@@ -243,8 +243,8 @@ export const SUSPECTS: Suspect[] = [
         a: 'Kunjumol was stirring it when I left. It smelled wonderful.',
       },
     ],
-    hit: { cx: 100, cy: 130, rx: 34, ry: 54 },
-    zoom: 2.0,
+    hit: { cx: 110, cy: 168, rx: 32, ry: 48 },
+    zoom: 2.1,
   },
 ]
 
