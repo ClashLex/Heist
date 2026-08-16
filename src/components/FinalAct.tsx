@@ -1,7 +1,7 @@
 import { useState, type ReactNode, type CSSProperties } from 'react'
 import type { EvidenceItem } from '../gameData'
 import { SUSPECTS, ANU_PHOTOS, type SuspectPhoto } from '../suspects'
-import { SuspectBust } from './SuspectArt'
+import { SuspectBust, CHARACTER_PALETTES } from './SuspectArt'
 
 // ── Canon (internally consistent, never randomised) ──────────
 export const CORRECT_SUSPECT = 'kunjumol'
@@ -853,6 +853,7 @@ function SuspectFileCard({
 }) {
   const suspect = SUSPECTS.find((s) => s.id === id)
   const file = SUSPECT_FILE[id]
+  const palette = CHARACTER_PALETTES[id]
   if (!suspect || !file) return null
   const showContra = file.contraId ? discoveredContradictions.has(file.contraId) : false
 
@@ -861,23 +862,41 @@ function SuspectFileCard({
       style={{
         marginTop: 14,
         background: 'rgba(247,240,220,0.96)',
-        borderLeft: '3px solid rgba(181,146,58,0.6)',
+        borderLeft: `4px solid ${palette?.primary ?? 'rgba(181,146,58,0.6)'}`,
         padding: '18px 22px',
         maxWidth: 460,
         animation: 'fadeIn 0.35s ease both',
       }}
     >
-      <div
-        style={{
-          fontFamily: 'Outfit, sans-serif',
-          fontSize: 12,
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          color: '#1E0E04',
-          marginBottom: 10,
-        }}
-      >
-        {suspect.name}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+        <div
+          style={{
+            fontFamily: 'Outfit, sans-serif',
+            fontSize: 12,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: '#1E0E04',
+            fontWeight: 600,
+          }}
+        >
+          {suspect.name}
+        </div>
+        {palette && (
+          <span
+            style={{
+              fontFamily: 'Outfit, sans-serif',
+              fontSize: 9.5,
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              color: '#4A3018',
+              background: 'rgba(0,0,0,0.06)',
+              padding: '3px 8px',
+              borderRadius: 3,
+            }}
+          >
+            {palette.label}
+          </span>
+        )}
       </div>
       {!questioned ? (
         <div

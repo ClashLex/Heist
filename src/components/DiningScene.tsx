@@ -497,27 +497,23 @@ export default function DiningScene({
           <path d="M 220,568 C 244,562 296,562 324,572" stroke="rgba(185,162,96,0.34)" strokeWidth="1" fill="none" />
           <path d="M 214,580 C 242,574 300,574 330,584" stroke="rgba(185,162,96,0.24)" strokeWidth="0.8" fill="none" />
 
-          {/* ═══ PHONE — resting on the mat, faint lock screen ═══ */}
+          {/* ═══ PHONE — resting on the mat, clear lock screen ═══ */}
           <g transform="rotate(-9 430 652)">
             <ellipse cx="432" cy="704" rx="30" ry="9" fill="#100500" opacity="0.34" filter="url(#blurDrop)" />
-            <rect x="406" y="606" width="48" height="94" rx="10" fill="#0B0B10" filter="url(#faintShadow)" />
-            <rect x="410" y="610" width="40" height="86" rx="7" fill="#12141C" />
+            <rect x="404" y="604" width="52" height="96" rx="10" fill="#0B0B10" filter="url(#faintShadow)" />
+            <rect x="408" y="608" width="44" height="88" rx="7" fill="#0F172A" />
             {/* screen glow */}
-            <rect x="410" y="610" width="40" height="86" rx="7" fill="#2A3A5A" opacity="0.5" filter="url(#phoneGlow)" />
-            <rect x="411" y="611" width="38" height="84" rx="6" fill="#0E1420" />
+            <rect x="408" y="608" width="44" height="88" rx="7" fill="#1E293B" opacity="0.7" filter="url(#phoneGlow)" />
+            <rect x="409" y="609" width="42" height="86" rx="6" fill="#0B0F19" />
             {/* time + date */}
-            <text x="430" y="636" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="13" fontWeight="600" fill="#DCE4F0">12:39</text>
-            <text x="430" y="646" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="4.4" letterSpacing="0.6" fill="rgba(220,228,240,0.6)">THIRUVONAM</text>
-            {/* notifications */}
-            <rect x="415" y="656" width="30" height="11" rx="2.5" fill="rgba(255,255,255,0.09)" />
-            <circle cx="420" cy="661.5" r="2.4" fill="#5A8A6A" />
-            <rect x="425" y="659" width="17" height="2" rx="1" fill="rgba(255,255,255,0.3)" />
-            <rect x="425" y="663" width="12" height="1.6" rx="0.8" fill="rgba(255,255,255,0.18)" />
-            <rect x="415" y="670" width="30" height="13" rx="2.5" fill="rgba(255,255,255,0.11)" />
-            <circle cx="420" cy="676.5" r="2.4" fill="#8B6A9A" />
-            <text x="425" y="675" fontFamily="Outfit, sans-serif" fontSize="3.6" fill="rgba(255,255,255,0.72)">Amma</text>
-            <text x="425" y="680.5" fontFamily="Outfit, sans-serif" fontSize="4.2" fontWeight="500" fill="rgba(255,255,255,0.9)">Did you bring it?</text>
-            <rect x="415" y="686" width="30" height="6" rx="2" fill="rgba(255,255,255,0.06)" />
+            <text x="430" y="630" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="13" fontWeight="700" fill="#F8FAFC">12:39</text>
+            <text x="430" y="639" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="5" letterSpacing="0.8" fontWeight="600" fill="#94A3B8">12:39 PM</text>
+            <text x="430" y="647" textAnchor="middle" fontFamily="Outfit, sans-serif" fontSize="4.2" letterSpacing="0.6" fill="#64748B">THIRUVONAM</text>
+            {/* notification card from Amma */}
+            <rect x="413" y="654" width="34" height="24" rx="3.5" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.15)" strokeWidth="0.5" />
+            <circle cx="419" cy="662" r="3" fill="#DC2626" />
+            <text x="424" y="663.5" fontFamily="Outfit, sans-serif" fontSize="4.4" fontWeight="600" fill="#FFFFFF">Amma</text>
+            <text x="416" y="672" fontFamily="Outfit, sans-serif" fontSize="3.8" fontWeight="500" fill="#E2E8F0">&ldquo;Did you bring it?&rdquo;</text>
           </g>
 
           {/* marigold + jasmine petals */}
