@@ -1,0 +1,10 @@
+{
+  "description": "Automatically analyze markdown files to generate structured content and streamline documentation workflows for developers and writers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
