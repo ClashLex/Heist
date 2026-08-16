@@ -121,6 +121,12 @@ export default function DiningScene({
               <stop offset="66%"  stopColor="#FF8E22" stopOpacity="0.06" />
               <stop offset="100%" stopColor="#FF6010" stopOpacity="0" />
             </radialGradient>
+            <linearGradient id="gardenSky" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%"   stopColor="#FFF4D0" />
+              <stop offset="45%"  stopColor="#FFE08A" />
+              <stop offset="85%"  stopColor="#8FC280" />
+              <stop offset="100%" stopColor="#4A8540" />
+            </linearGradient>
             <linearGradient id="lightShaft" x1="0%" y1="0%" x2="80%" y2="100%">
               <stop offset="0%"   stopColor="#FFE080" stopOpacity="0.06" />
               <stop offset="100%" stopColor="#FFE080" stopOpacity="0" />
@@ -253,12 +259,60 @@ export default function DiningScene({
           <rect x="1232" y="72" width="98" height="6" fill="#080400" opacity="0.5" />
           <rect x="1324" y="72" width="76" height="828" fill="#211208" opacity="0.5" />
           <rect x="1318" y="72" width="8" height="828" fill="#080400" opacity="0.42" />
-          <rect x="0" y="72" width="66" height="828" fill="#140800" opacity="0.4" />
+          {/* ═══ LEFT WALL & TRADITIONAL KERALA WOODEN WINDOW / VERANDA THRESHOLD ═══ */}
+          {/* Left wall dark teak panelling */}
+          <rect x="0" y="72" width="200" height="828" fill="#1C0E05" opacity="0.6" />
+          <rect x="0" y="72" width="14" height="828" fill="#0A0400" opacity="0.75" />
 
-          {/* ═══ WINDOW LIGHT ═══ */}
+          {/* Window opening looking out to sunny courtyard */}
+          <g id="keralaWindow">
+            {/* Outdoor sunny garden backdrop through the window */}
+            <rect x="22" y="76" width="176" height="186" rx="4" fill="url(#gardenSky)" />
+            <rect x="22" y="76" width="176" height="186" rx="4" fill="url(#windowLight)" opacity="0.7" />
+
+            {/* Lush courtyard banana & palm leaves outside */}
+            <ellipse cx="50" cy="240" rx="36" ry="28" fill="#245A36" opacity="0.95" />
+            <ellipse cx="160" cy="242" rx="42" ry="28" fill="#1B4328" opacity="0.95" />
+            <ellipse cx="106" cy="254" rx="55" ry="22" fill="#3D7D4D" opacity="0.85" />
+            <path d="M 28,185 Q 58,165 88,188" stroke="#52B788" strokeWidth="2.5" fill="none" opacity="0.8" />
+            <path d="M 124,175 Q 154,160 184,182" stroke="#74C69D" strokeWidth="2.5" fill="none" opacity="0.8" />
+
+            {/* Veranda wooden balustrade / lower railing */}
+            <rect x="22" y="222" width="176" height="40" fill="#2E1808" opacity="0.95" />
+            <line x1="22" y1="228" x2="198" y2="228" stroke="#3D220C" strokeWidth="2" />
+            <line x1="22" y1="242" x2="198" y2="242" stroke="#1A0A02" strokeWidth="1.5" />
+            {[42, 66, 90, 114, 138, 162, 184].map((bx, bi) => (
+              <rect key={bi} x={bx} y={228} width="5" height="34" rx="1.2" fill="#3E200A" stroke="#1A0A02" strokeWidth="0.8" />
+            ))}
+
+            {/* Heavy Carved Teak Wooden Window Frame */}
+            <rect x="18" y="72" width="184" height="194" rx="4" fill="none" stroke="#2B1406" strokeWidth="10" />
+            <rect x="18" y="72" width="184" height="194" rx="4" fill="none" stroke="#3F200A" strokeWidth="4" />
+
+            {/* Carved top lintel */}
+            <rect x="12" y="68" width="196" height="12" rx="2" fill="#3D1E08" stroke="#1A0A02" strokeWidth="1.2" />
+            <rect x="16" y="70" width="188" height="2.5" fill="#D4AF37" opacity="0.45" />
+
+            {/* Open wooden shutters on left and right */}
+            {/* Left shutter folded open */}
+            <polygon points="4,74 20,80 20,260 4,254" fill="#2B1506" stroke="#150802" strokeWidth="1.2" />
+            <polygon points="7,82 17,86 17,248 7,244" fill="#3D200A" />
+            <ellipse cx="18" cy="170" rx="2" ry="3" fill="#D4AF37" />
+
+            {/* Right shutter folded open */}
+            <polygon points="200,80 216,74 216,254 200,260" fill="#2B1506" stroke="#150802" strokeWidth="1.2" />
+            <polygon points="203,86 213,82 213,244 203,248" fill="#3D200A" />
+            <ellipse cx="202" cy="170" rx="2" ry="3" fill="#D4AF37" />
+
+            {/* Window Sill at base */}
+            <rect x="12" y="260" width="196" height="10" rx="2" fill="#381B08" stroke="#160802" strokeWidth="1" />
+            <rect x="16" y="261" width="188" height="2" fill="rgba(255,230,160,0.35)" />
+          </g>
+
+          {/* ═══ WINDOW LIGHT SHAFTS ACROSS ROOM ═══ */}
           <rect x="0" y="0" width="1400" height="900" fill="url(#windowLight)" />
-          <polygon points="0,72 300,72 470,900 0,900" fill="url(#lightShaft)" />
-          <ellipse cx="250" cy="480" rx="280" ry="250" fill="#FFD860" opacity="0.028" />
+          <polygon points="22,76 198,76 480,900 0,900" fill="url(#lightShaft)" />
+          <ellipse cx="260" cy="480" rx="280" ry="250" fill="#FFD860" opacity="0.035" />
 
           {/* ═══ MAT ═══ */}
           <rect x="196" y="222" width="1012" height="472" rx="8"
