@@ -4,6 +4,8 @@ import InspectAnnotation from './components/InspectAnnotation'
 import EvidenceDrawer from './components/EvidenceDrawer'
 import Interrogation from './components/Interrogation'
 import PhotoViewer from './components/PhotoViewer'
+import FinalAct, { CORRECT_SUSPECT, CORRECT_MOTIVE } from './components/FinalAct'
+import StartScreen from './components/StartScreen'
 import {
   INVESTIGATION_OBJECTS,
   MEANINGFUL_CLUE_THRESHOLD,
@@ -27,6 +29,7 @@ const SUSPECT_BY_ID: Record<string, Suspect> = Object.fromEntries(
 )
 
 export default function App() {
+  const [started, setStarted] = useState(false)
   const [inspectingId, setInspectingId] = useState<string | null>(null)
   const [inspectedIds, setInspectedIds] = useState<Set<string>>(new Set())
   const [evidence, setEvidence] = useState<EvidenceItem[]>([])
@@ -41,6 +44,14 @@ export default function App() {
   const [photographsInspected, setPhotographsInspected] = useState<Set<string>>(new Set())
   const [photoViewerOpen, setPhotoViewerOpen] = useState(false)
   const [suspectNote, setSuspectNote] = useState<'hidden' | 'shown' | 'dismissed'>('hidden')
+  const [discoveredContradictions, setDiscoveredContradictions] = useState<Set<string>>(new Set())
+
+  // ── Final act: reconstruct → accuse → reveal ──────────────
+  const [phase, setPhase] = useState<'scene' | 'reconstruct' | 'accuse' | 'commit' | 'reveal'>('scene')
+  const [timeline, setTimeline] = useState<Record<string, string>>({})
+  const [accusedSuspectId, setAccusedSuspectId] = useState<string | null>(null)
+  const [accusedMotive, setAccusedMotive] = useState<string | null>(null)
+  const [accusationResult, setAccusationResult] = useState<'fit' | 'partial' | 'miss' | null>(null)
 
   const inspecting = inspectingId ? OBJECT_BY_ID[inspectingId] : null
   const activeSuspect = activeSuspectId ? SUSPECT_BY_ID[activeSuspectId] : null
@@ -109,8 +120,61 @@ export default function App() {
       return next
     })
 
+    // A gated confrontation question surfaces a contradiction in someone's story.
+    if (question.photoReq || question.evidenceReq) {
+      setDiscoveredContradictions((prev) =>
+        prev.has(question.id) ? prev : new Set(prev).add(question.id),
+      )
+    }
+
     if (question.opensPhotos) setPhotoViewerOpen(true)
   }
+
+  // ── Final-act handlers ────────────────────────────────────
+  function handlePlace(cardId: string, slot: string) {
+    setTimeline((prev) => {
+      const next = { ...prev }
+      if (slot === '') delete next[cardId]
+      else next[cardId] = slot
+      return next
+    })
+  }
+
+  function handleAccuse() {
+    const fit = accusedSuspectId === CORRECT_SUSPECT && accusedMotive === CORRECT_MOTIVE
+    const partial = accusedSuspectId === CORRECT_SUSPECT && !fit
+    const result = fit ? 'fit' : partial ? 'partial' : 'miss'
+    setAccusationResult(result)
+    if (fit) setPhase('reveal')
+  }
+
+  function handleReplay() {
+    setInspectingId(null)
+    setInspectedIds(new Set())
+    setEvidence([])
+    setDrawerOpen(false)
+    setToast(false)
+    setNote('hidden')
+    setActiveSuspectId(null)
+    setQuestionedSuspects(new Set())
+    setDialogueHistory({})
+    setPhotographsInspected(new Set())
+    setPhotoViewerOpen(false)
+    setSuspectNote('hidden')
+    setDiscoveredContradictions(new Set())
+    setTimeline({})
+    setAccusedSuspectId(null)
+    setAccusedMotive(null)
+    setAccusationResult(null)
+    setPhase('scene')
+  }
+
+  const clueCount = evidence.filter((e) => e.kind === 'clue').length
+  const canReconstruct =
+    clueCount >= MEANINGFUL_CLUE_THRESHOLD &&
+    questionedSuspects.size >= 3 &&
+    photographsInspected.size >= 1 &&
+    discoveredContradictions.size >= 1
 
   function handleInspectPhoto(photoId: string) {
     setPhotographsInspected((prev) => new Set(prev).add(photoId))
@@ -165,6 +229,7 @@ export default function App() {
       />
 
       {/* Top bar */}
+      {phase === 'scene' && (
       <header
         style={{
           position: 'absolute',
@@ -238,6 +303,34 @@ export default function App() {
           </span>
         </button>
       </header>
+      )}
+
+      {/* Reconstruct entry — appears only once there's enough to reason with */}
+      {phase === 'scene' && canReconstruct && !focus && (
+        <button
+          onClick={() => setPhase('reconstruct')}
+          style={{
+            position: 'absolute',
+            bottom: 34,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            zIndex: 45,
+            fontFamily: 'Outfit, sans-serif',
+            fontSize: 11,
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: '#160C04',
+            background: '#E8D890',
+            border: '1px solid rgba(232,216,144,0.5)',
+            padding: '13px 28px',
+            cursor: 'pointer',
+            boxShadow: '0 14px 40px rgba(0,0,0,0.5)',
+            animation: 'hintAppear 1s ease both',
+          }}
+        >
+          Reconstruct what happened
+        </button>
+      )}
 
       {/* In-scene inspection annotation */}
       {inspecting && (
@@ -321,9 +414,42 @@ export default function App() {
       {/* Evidence drawer */}
       <EvidenceDrawer
         items={evidence}
-        open={drawerOpen}
+        open={phase === 'scene' && drawerOpen}
         onClose={() => setDrawerOpen(false)}
       />
+
+      {/* Final act — reconstruct → accuse → reveal, over the frozen scene */}
+      {phase !== 'scene' && (
+        <FinalAct
+          phase={phase}
+          evidence={evidence}
+          inspectedPhotoIds={photographsInspected}
+          questionedSuspects={questionedSuspects}
+          discoveredContradictions={discoveredContradictions}
+          timeline={timeline}
+          accusedSuspectId={accusedSuspectId}
+          accusedMotive={accusedMotive}
+          accusationResult={accusationResult}
+          onPlace={handlePlace}
+          onSelectSuspect={setAccusedSuspectId}
+          onSelectMotive={setAccusedMotive}
+          onGoAccuse={() => setPhase('accuse')}
+          onReview={() => setPhase('commit')}
+          onAccuse={handleAccuse}
+          onReconsider={() => {
+            setAccusationResult(null)
+            setPhase('accuse')
+          }}
+          onExitToScene={() => {
+            setAccusationResult(null)
+            setPhase('scene')
+          }}
+          onReplay={handleReplay}
+        />
+      )}
+
+      {/* Intro — shown over the scene until the player begins */}
+      {!started && <StartScreen onBegin={() => setStarted(true)} />}
     </div>
   )
 }

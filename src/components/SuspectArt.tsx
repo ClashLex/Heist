@@ -16,28 +16,39 @@ export function SuspectPresence({ id, cx, cy, ry }: PresenceProps) {
   const shoulderY = headY + headR + 4
   const accent = '#C6A430'
 
+  const bodyFill = '#3A2716'
   return (
     <g>
+      {/* warm halo so the figure separates from the dark room */}
+      <ellipse cx={cx} cy={cy - ry * 0.1} rx={ry * 0.72} ry={ry * 1.02}
+        fill="rgba(255,206,120,0.16)" filter="url(#blurSoft)" />
+      {/* soft standing marker at the feet */}
+      <ellipse cx={cx} cy={feet} rx={ry * 0.34} ry={ry * 0.1} fill="rgba(232,216,144,0.22)" />
       {/* cast shadow */}
-      <ellipse cx={cx + 4} cy={feet} rx={ry * 0.5} ry={ry * 0.13} fill="#0A0400" opacity="0.4" />
-      {/* body silhouette */}
+      <ellipse cx={cx + 4} cy={feet + 2} rx={ry * 0.5} ry={ry * 0.13} fill="#0A0400" opacity="0.45" />
+      {/* body silhouette — warmer and lighter for visibility */}
       <path
         d={`M ${cx - ry * 0.34},${feet}
             C ${cx - ry * 0.4},${shoulderY + ry * 0.2} ${cx - ry * 0.38},${shoulderY} ${cx - ry * 0.26},${shoulderY - 2}
             C ${cx - ry * 0.14},${shoulderY - 6} ${cx + ry * 0.14},${shoulderY - 6} ${cx + ry * 0.26},${shoulderY - 2}
             C ${cx + ry * 0.38},${shoulderY} ${cx + ry * 0.4},${shoulderY + ry * 0.2} ${cx + ry * 0.34},${feet} Z`}
-        fill="#1B0F06"
+        fill={bodyFill} stroke="rgba(0,0,0,0.4)" strokeWidth="0.6"
+      />
+      {/* front highlight down the torso */}
+      <path
+        d={`M ${cx - ry * 0.06},${shoulderY} L ${cx - ry * 0.1},${feet - ry * 0.1}`}
+        stroke="rgba(255,224,150,0.28)" strokeWidth="2.2" strokeLinecap="round" fill="none"
       />
       {/* warm rim light on the window side */}
       <path
         d={`M ${cx - ry * 0.34},${feet} C ${cx - ry * 0.4},${shoulderY + ry * 0.2} ${cx - ry * 0.38},${shoulderY} ${cx - ry * 0.26},${shoulderY - 2}`}
-        stroke="rgba(255,208,120,0.28)" strokeWidth="1.4" fill="none"
+        stroke="rgba(255,214,130,0.6)" strokeWidth="1.8" fill="none"
       />
       {/* head */}
-      <circle cx={cx} cy={headY} r={headR} fill="#1B0F06" />
+      <circle cx={cx} cy={headY} r={headR} fill={bodyFill} stroke="rgba(0,0,0,0.4)" strokeWidth="0.6" />
       <path
         d={`M ${cx - headR},${headY} A ${headR} ${headR} 0 0 1 ${cx},${headY - headR}`}
-        stroke="rgba(255,208,120,0.3)" strokeWidth="1.2" fill="none"
+        stroke="rgba(255,214,130,0.62)" strokeWidth="1.6" fill="none"
       />
 
       {/* per-suspect tells */}

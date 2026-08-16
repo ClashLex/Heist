@@ -39,10 +39,11 @@ export interface SuspectPhoto {
   caption: string // neutral — never names the hidden detail
 }
 
+// Chronological — the four-minute window sits between the 12:38 and 12:42 frames.
 export const ANU_PHOTOS: SuspectPhoto[] = [
   { id: 'photo-01', time: '10:18 AM', caption: 'Family preparing the Sadya.' },
-  { id: 'photo-02', time: '11:52 AM', caption: 'Kitchen activity.' },
-  { id: 'photo-03', time: '12:38 PM', caption: 'The dining area, before the Sadya.' },
+  { id: 'photo-03', time: '12:38 PM', caption: 'The dining leaf, before the meal.' },
+  { id: 'photo-02', time: '12:40 PM', caption: 'The kitchen doorway.' },
   { id: 'photo-04', time: '12:42 PM', caption: 'A family photograph.' },
 ]
 
@@ -104,10 +105,10 @@ export const SUSPECTS: Suspect[] = [
         a: 'From the veranda? No. Though Kunjumol was in and out of the kitchen.',
       },
       {
-        id: 'ap-log',
-        q: 'The call ran 12:31 to 12:36.',
-        a: '…Then I came back inside. I may have my minutes wrong. It was a busy morning.',
-        evidenceReq: 'phone',
+        id: 'ap-photo',
+        q: 'A 12:42 photo shows you at the table, not outside.',
+        a: "…The call ended at 12:36. I came back in after that. I wasn't doing anything.",
+        photoReq: 'photo-04',
       },
     ],
     hit: { cx: 1360, cy: 470, rx: 32, ry: 62 },
@@ -172,9 +173,15 @@ export const SUSPECTS: Suspect[] = [
       },
       {
         id: 'ku-vessel',
-        q: 'A photo shows you carrying a vessel toward the dining room.',
-        a: 'That— that was the sambar. I went to refill the sambar. Not the payasam.',
+        q: 'A 12:40 photo shows you carrying a vessel from the kitchen.',
+        a: 'That— that was the sambar. I was refilling the sambar. Not the payasam.',
         photoReq: 'photo-02',
+      },
+      {
+        id: 'ku-phone',
+        q: "Your phone shows a message — “Did you bring it?”",
+        a: 'My mother. She asks after everything — the sambar, the payasam, all of it.',
+        evidenceReq: 'phone',
       },
     ],
     hit: { cx: 1281, cy: 352, rx: 40, ry: 66 },

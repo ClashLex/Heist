@@ -1,4 +1,5 @@
 {
+  "title": "onam-heist",
   "description": "Automatically analyze markdown files to generate structured content and streamline documentation workflows for developers and writers.",
   "robots": {
     "index": false
